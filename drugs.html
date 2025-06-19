@@ -47,62 +47,76 @@
         }
     </style>
 
-    <style>
-      :root {
-        --bg-color: #1c1c1c;
-        --text-color: #eee;
-        --card-bg: #2a2a2a;
-        --highlight-color: #d4af37;
-      }
-      body.light-mode {
-        --bg-color: #e6f0f8;
-        --text-color: #000;
-        --card-bg: #fff;
-        --highlight-color: #003366;
-      }
-      body {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-      .icon-link {
-        background-color: var(--card-bg) !important;
-        color: var(--text-color) !important;
-        font-size: 24px !important;
-        font-weight: bold;
-      }
-      .icon-link i {
-        font-size: 36px !important;
-        color: var(--highlight-color) !important;
-      }
-      .theme-toggle {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background: none;
-        color: var(--highlight-color);
-        border: 2px solid var(--highlight-color);
-        padding: 6px 10px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 14px;
-      }
-    </style>
-    
-    <script>
-      function toggleTheme() {
-        document.body.classList.toggle("light-mode");
-        localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
-      }
-      window.onload = function() {
-        if (localStorage.getItem("theme") === "light") {
-          document.body.classList.add("light-mode");
-        }
-      };
-    </script>
-    
+<style>
+  :root {
+    --bg: #1c1c1c;
+    --text: #eee;
+    --card: #2a2a2a;
+    --highlight: #d4af37;
+    --border: #444;
+  }
+  
+  body.light-mode {
+    --bg: #e3f2fd;
+    --text: #1a1a1a;
+    --card: #ffffff;
+    --highlight: #004080;
+    --border: #99ccee;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  header {
+    background-color: var(--card);
+    color: var(--highlight);
+    border-bottom: 2px solid var(--border);
+  }
+  header h1 {
+    color: var(--highlight);
+    font-weight: bold;
+  }
+  section, .card, .icon-link {
+    background-color: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  h1, h2, h3 {
+    color: var(--highlight);
+  }
+  .theme-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: var(--card);
+    color: var(--highlight);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 5px 10px;
+    cursor: pointer;
+    z-index: 999;
+  }
+</style>
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("light-mode");
+    localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+  }
+  window.onload = function () {
+    if (localStorage.getItem("theme") === "light") {
+      document.body.classList.add("light-mode");
+    }
+  };
+</script>
+
 </head>
 <body>
+  <button class='theme-toggle' onclick='toggleTheme()'>🌙 / ☀️</button>
     <h1>💊 Emergency Drugs</h1>
     <div class="grid-container">
         <div class="card">

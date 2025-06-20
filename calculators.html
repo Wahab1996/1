@@ -116,11 +116,12 @@
         return;
       }
 
-      var maintenance = weight * 1500;
+      // تصحيح الحسابات:
+      var maintenance = maintenanceCalc(weight);
       var bolus = weight * 20;
-      var deficit5 = weight * 0.05 * 1000 / 24;
-      var deficit7 = weight * 0.07 * 1000 / 24;
-      var deficit10 = weight * 0.10 * 1000 / 24;
+      var deficit5 = ((weight * 0.05) * 1000) / 24;
+      var deficit7 = ((weight * 0.07) * 1000) / 24;
+      var deficit10 = ((weight * 0.10) * 1000) / 24;
 
       document.getElementById("result").innerHTML =
         "<h3>Results</h3>" +
@@ -129,6 +130,16 @@
         "<p>Deficit 5%: " + deficit5.toFixed(1) + " ml/hr</p>" +
         "<p>Deficit 7%: " + deficit7.toFixed(1) + " ml/hr</p>" +
         "<p>Deficit 10%: " + deficit10.toFixed(1) + " ml/hr</p>";
+    }
+
+    function maintenanceCalc(weight) {
+      if (weight <= 10) {
+        return weight * 100;
+      } else if (weight <= 20) {
+        return 1000 + (weight - 10) * 50;
+      } else {
+        return 1500 + (weight - 20) * 20;
+      }
     }
   </script>
 </body>
